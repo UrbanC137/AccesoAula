@@ -5,11 +5,11 @@
     if(isset($_SESSION['usuario'])){
         $nombre_usuario = $_SESSION['nombre_completo'];  // Obtener el nombre completo del usuario
     }else{
-        header("location: index.php");  // Redirigir al inicio si no está autenticado
+        header("location: ../vista/index.php");  // Redirigir al inicio si no está autenticado
         exit;
     }
 
-    include 'php/conexion_be.php'; // Asegúrate de que la conexión esté bien configurada
+    include '../modelo/conexion_be.php'; // Asegúrate de que la conexión esté bien configurada
 ?>
 
 <?php
@@ -178,7 +178,7 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
                         <i class="fas fa-chevron-down text-xs ml-auto"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="php/cerrar_sesion.php">cerrar sesión</a>
+                        <a href="../control/cerrar_sesion.php">cerrar sesión</a>
                     </div>
                 </div>
             </div>
@@ -212,7 +212,7 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
                             while ($tema = mysqli_fetch_assoc($resultTemas)) {
                                 // Crear el enlace para "La Célula"
                                 if ($tema['nombre'] == 'La Célula') {
-                                    $url = 'lacelula.php';  // Redirige a lacelula.php para el tema "La Célula"
+                                    $url = '../vista/lacelula.php';  // Redirige a lacelula.php para el tema "La Célula"
                                 } else {
                                     $url = strtolower(str_replace(' ', '_', $tema['nombre'])) . '.php'; // Redirige a la página del tema correspondiente
                                 }

@@ -5,11 +5,11 @@
     if(isset($_SESSION['usuario'])){
         $nombre_usuario = $_SESSION['nombre_completo'];  // Obtener el nombre completo del usuario
     }else{
-        header("location: index.php");  // Redirigir al inicio si no está autenticado
+        header("location: ../vista/index.php");  // Redirigir al inicio si no está autenticado
         exit;
     }
 
-    include 'php/conexion_be.php'; // Asegúrate de que la conexión esté bien configurada
+    include '../modelo/conexion_be.php'; // Asegúrate de que la conexión esté bien configurada
 ?>
 
 <?php
@@ -53,6 +53,7 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
 
 <!DOCTYPE html>
 
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -86,6 +87,9 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
                 }
             }
         }
+    </script>
+        <script>
+        const iniciales = "<?php echo $iniciales; ?>";
     </script>
     <style>
         /* Scrollbar personalizada */
@@ -246,7 +250,7 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
                 <i class="fas fa-chevron-down text-xs ml-auto"></i>
             </button>
             <div class="dropdown-menu">
-                <a href="php/cerrar_sesion.php">cerrar sesión</a>
+                <a href="../control/cerrar_sesion.php">cerrar sesión</a>
             </div>
         </div>
     </div>

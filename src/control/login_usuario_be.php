@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include 'conexion_be.php';
+	include '../modelo/conexion_be.php';
 
 	$correo = $_POST['correo'];
 	$contrasena = $_POST['contrasena'];
@@ -13,13 +13,13 @@
 		$usuario = mysqli_fetch_assoc($validar_login);
 		$_SESSION['usuario'] = $correo;  // Almacenar el correo en la sesión
 		$_SESSION['nombre_completo'] = $usuario['nombre_completo'];  // Almacenar el nombre completo en la sesión
-		header("location: ../bienvenida.php");  // Redirigir a la página de bienvenida
+		header("location: ../vista/bienvenida.php");  // Redirigir a la página de bienvenida
 		exit;
 	}else{
 		echo '
 		<script>
 			alert("Usuario no existe, por favor verifique los datos introducidos");
-			window.location = "../index.php";
+			window.location = "../vista/index.php";
 		</script>
 		';
 		exit;
