@@ -401,6 +401,12 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
                                 <p>
                                     Comprender la estructura y función de las células es fundamental para estudiar la biología, ya que todos los procesos vitales ocurren a nivel celular.
                                 </p>
+
+                                <!-- Botón para descargar el texto transcrito -->
+                                <button id="boton_descargar" class="mt-4 bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-lg text-sm font-medium">
+                                    <i class="fas fa-download mr-2"></i> Descargar transcripción
+                                </button>
+
                             </div>
                             
                             <!-- Estadísticas del texto -->
@@ -614,5 +620,26 @@ $queryTemas = "SELECT * FROM temas WHERE categoria_id = ?"; // Usaremos parámet
         handleLogout();
     });
 </script>
+
+<script>
+document.getElementById("boton_descargar").addEventListener("click", function () {
+    const container = document.querySelector("#transcriptionContainer .prose");
+    if (!container) {
+        alert("No se encontró el texto transcrito.");
+        return;
+    }
+
+    // Extrae el texto plano, ignorando íconos, botones, etc.
+    const texto = container.innerText.trim();
+
+    const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+    const enlace = document.createElement("a");
+    enlace.href = URL.createObjectURL(blob);
+    enlace.download = "transcripcion.txt";
+    enlace.click();
+    URL.revokeObjectURL(enlace.href);
+});
+</script>
+
 </body>
 </html>
